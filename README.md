@@ -48,25 +48,8 @@ For example:
 
 ---
 
-## 📷 Screenshots
+<img width="1360" height="683" alt="assetsaitool2 png" src="https://github.com/user-attachments/assets/1973ec9c-f190-4e05-a45b-aa23c2bc3e85" />
 
-### 🏠 Home Page
-
-![Home](assets/home.png)
-
-### ⚡ AI Tools Section
-
-![AI Tools](assets/tools.png)
-
-### 🤖 Chatbot
-
-![Chatbot](assets/chatbot.png)
-
-### 💰 Budget Planner Output
-
-![Budget](assets/budget.png)
-
----
 
 ## ⚙️ Installation & Usage
 
