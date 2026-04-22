@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sky Events | AI-Powered Event Planner</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="top-sj">SKY</div>
+        <div class="header-text">
+          <h1>sky Events</h1>
+          <p>CREATING UNFORGETTABLE EVENT EXPERIENCES</p>
+          <span class="ai-badge">✦ AI POWERED</span>
+        </div>
+      </div>
+      <div class="hero-animation"></div>
+      <canvas id="headerSmoke"></canvas>
+    </header>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#events">Events</a>
+      <a href="#ai-tools">AI Tools</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- ==================== AI TOOLS SECTION ==================== -->
+    <section id="ai-tools">
+      <h2>⚡ AI Tools Suite</h2>
+      <p style="text-align: center; color: #555; margin-bottom: 2rem">
+        10 intelligent tools to enhance your event experience
+      </p>
+      <div class="ai-grid">
+        <!-- TOOL 1: Event Recommender -->
+        <div class="ai-card" id="tool-recommend">
+          <div class="ai-icon">🎯</div>
+          <h3>Event Recommender</h3>
+          <p>Get personalized event suggestions based on your interests</p>
+          <div class="ai-input-area">
+            <input
+              type="text"
+              id="rec-input"
+              placeholder="e.g. I love music and art..."
+            />
+            <button class="ai-btn" onclick="runRecommender()">Suggest</button>
+          </div>
+          <div class="ai-output" id="rec-output"></div>
+        </div>
+
+        <!-- TOOL 2: Event Description Writer -->
+        <div class="ai-card" id="tool-desc">
+          <div class="ai-icon">✍️</div>
+          <h3>Event Description Writer</h3>
+          <p>Auto-generate compelling event descriptions</p>
+          <div class="ai-input-area">
+            <input
+              type="text"
+              id="desc-input"
+              placeholder="Event name & type..."
+            />
+            <button class="ai-btn" onclick="runDescWriter()">Generate</button>
+          </div>
+          <div class="ai-output" id="desc-output"></div>
+        </div>
+
+        <!-- TOOL 3: Budget Planner -->
+        <div class="ai-card" id="tool-budget">
+          <div class="ai-icon">💰</div>
+          <h3>AI Budget Planner</h3>
+          <p>Smart budget breakdown for your event</p>
+          <div class="ai-input-area">
+            <input
+              type="number"
+              id="budget-input"
+              placeholder="Total budget in ₹..."
+            />
+            <input
+              type="text"
+              id="budget-event"
+              placeholder="Event type..."
+              style="margin-top: 6px"
+            />
+            <button class="ai-btn" onclick="runBudgetPlanner()">
+              Plan Budget
+            </button>
+          </div>
+          <div class="ai-output" id="budget-output"></div>
+        </div>
+
+        <!-- TOOL 4: Guest List Manager -->
+        <div class="ai-card" id="tool-guest">
+          <div class="ai-icon">👥</div>
+          <h3>Guest List Optimizer</h3>
+          <p>AI tips to manage and optimize your guest list</p>
+          <div class="ai-input-area">
+            <input
+              type="number"
+              id="guest-count"
+              placeholder="Expected guests..."
+            />
+            <input
+              type="text"
+              id="guest-venue"
+              placeholder="Venue type..."
+              style="margin-top: 6px"
+            />
+            <button class="ai-btn" onclick="runGuestOptimizer()">
+              Optimize
+            </button>
+          </div>
+          <div class="ai-output" id="guest-output"></div>
+        </div>
+
+        <!-- TOOL 5: Smart Chatbot -->
+        <div class="ai-card ai-card-wide" id="tool-chat">
+          <div class="ai-icon">🤖</div>
+          <h3>Sky Events AI Assistant</h3>
+          <p>Ask anything about events, planning, or sky Events</p>
+          <div class="chat-window" id="chat-window">
+            <div class="chat-msg bot-msg">
+              👋 Hi! I'm your Sky Events AI assistant. Ask me anything about
+              events, planning tips, or our upcoming shows!
+            </div>
+          </div>
+          <div class="ai-input-area chat-input-row">
+            <input
+              type="text"
+              id="chat-input"
+              placeholder="Type your question..."
+              onkeydown="if (event.key === 'Enter') sendChat();"
+            />
+            <button class="ai-btn" onclick="sendChat()">Send</button>
+          </div>
+        </div>
+
+        <!-- TOOL 6: Event Schedule Generator -->
+        <div class="ai-card" id="tool-schedule">
+          <div class="ai-icon">📅</div>
+          <h3>Schedule Generator</h3>
+          <p>Create a detailed event day timeline</p>
+          <div class="ai-input-area">
+            <input type="text" id="sched-event" placeholder="Event name..." />
+            <input
+              type="number"
+              id="sched-hours"
+              placeholder="Duration (hours)..."
+              style="margin-top: 6px"
+            />
+            <button class="ai-btn" onclick="runScheduleGen()">
+              Generate Schedule
+            </button>
+          </div>
+          <div class="ai-output" id="sched-output"></div>
+        </div>
+
+        <!-- TOOL 7: Tagline Generator -->
+        <div class="ai-card" id="tool-tagline">
+          <div class="ai-icon">💡</div>
+          <h3>Tagline Generator</h3>
+          <p>Catchy taglines and slogans for your event</p>
+          <div class="ai-input-area">
+            <input
+              type="text"
+              id="tag-input"
+              placeholder="Event theme or keyword..."
+            />
+            <button class="ai-btn" onclick="runTaglineGen()">
+              Create Taglines
+            </button>
+          </div>
+          <div class="ai-output" id="tag-output"></div>
+        </div>
+
+        <!-- TOOL 8: Feedback Analyzer -->
+        <div class="ai-card" id="tool-feedback">
+          <div class="ai-icon">📊</div>
+          <h3>Feedback Analyzer</h3>
+          <p>Analyze attendee feedback for insights</p>
+          <div class="ai-input-area">
+            <textarea
+              id="feedback-input"
+              placeholder="Paste your attendee feedback here..."
+              rows="3"
+              style="
+                width: 100%;
+                box-sizing: border-box;
+                border: 1px solid #39ff14;
+                border-radius: 5px;
+                padding: 8px;
+                resize: vertical;
+                font-family: inherit;
+              "
+            ></textarea>
+            <button class="ai-btn" onclick="runFeedbackAnalyzer()">
+              Analyze
+            </button>
+          </div>
+          <div class="ai-output" id="feedback-output"></div>
+        </div>
+
+        <!-- TOOL 9: Email Composer -->
+        <div class="ai-card" id="tool-email">
+          <div class="ai-icon">📧</div>
+          <h3>Invite Email Composer</h3>
+          <p>Generate professional event invitation emails</p>
+          <div class="ai-input-area">
+            <input type="text" id="email-event" placeholder="Event name..." />
+            <input
+              type="text"
+              id="email-audience"
+              placeholder="Target audience..."
+              style="margin-top: 6px"
+            />
+            <button class="ai-btn" onclick="runEmailComposer()">
+              Compose Email
+            </button>
+          </div>
+          <div class="ai-output" id="email-output"></div>
+        </div>
+
+        <!-- TOOL 10: Venue Advisor -->
+        <div class="ai-card" id="tool-venue">
+          <div class="ai-icon">🏟️</div>
+          <h3>Venue Advisor</h3>
+          <p>AI-powered venue selection recommendations</p>
+          <div class="ai-input-area">
+            <input
+              type="number"
+              id="venue-guests"
+              placeholder="Number of guests..."
+            />
+            <input
+              type="text"
+              id="venue-type"
+              placeholder="Event type (concert/fest)..."
+              style="margin-top: 6px"
+            />
+            <button class="ai-btn" onclick="runVenueAdvisor()">
+              Advise Venue
+            </button>
+          </div>
+          <div class="ai-output" id="venue-output"></div>
+        </div>
+
+        <!-- TOOL 11: Social Media Caption Generator -->
+        <div class="ai-card" id="tool-social">
+          <div class="ai-icon">📱</div>
+          <h3>Social Media Captions</h3>
+          <p>Viral-worthy captions for Instagram, Twitter & more</p>
+          <div class="ai-input-area">
+            <input type="text" id="social-event" placeholder="Event name..." />
+            <input
+              type="text"
+              id="social-vibe"
+              placeholder="Vibe (energetic/chill/elegant)..."
+              style="margin-top: 6px"
+            />
+            <button class="ai-btn" onclick="runSocialCaption()">
+              Generate Captions
+            </button>
+          </div>
+          <div class="ai-output" id="social-output"></div>
+        </div>
+
+        <!-- TOOL 12: Risk Assessment Tool -->
+        <div class="ai-card" id="tool-risk">
+          <div class="ai-icon">🛡️</div>
+          <h3>Risk Assessment</h3>
+          <p>Identify and mitigate potential event risks</p>
+          <div class="ai-input-area">
+            <input type="text" id="risk-event" placeholder="Event name..." />
+            <input
+              type="number"
+              id="risk-guests"
+              placeholder="Expected attendance..."
+              style="margin-top: 6px"
+            />
+            <button class="ai-btn" onclick="runRiskAssessment()">
+              Assess Risks
+            </button>
+          </div>
+          <div class="ai-output" id="risk-output"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section id="about">
+      <h2>About Us</h2>
+      <p>
+        Welcome to <strong>sky Events</strong> — a student event planning
+        initiative bringing creative energy into every celebration.
+      </p>
+      <p>
+        We focus on concerts, college fests, and special gatherings with a
+        personal touch.
+      </p>
+      <p>
+        Our team is built on friendship, passion, and love of performance —
+        making every sky Events event special.
+      </p>
+    </section>
+
+    <!-- ==================== EVENTS SECTION ==================== -->
+    <section id="events">
+      <h2>Upcoming Events</h2>
+      <div class="events">
+        <div class="event">
+          <h3>College Fest 2026</h3>
+          <p><strong>Date:</strong> March 15, 2026</p>
+          <p><strong>Venue:</strong> YMCA Grounds, Chennai</p>
+          <p>Vibrant evening with music, lights, and student performances.</p>
+          <p style="color: #39ff14; font-weight: bold; font-size: 1.1rem">
+            Registration Fee: ₹1800
+          </p>
+          <button class="register-btn" data-event="College Fest 2026">
+            Register Now
+          </button>
+        </div>
+        <div class="event">
+          <h3>Acoustic Night</h3>
+          <p><strong>Date:</strong> April 10, 2026</p>
+          <p><strong>Venue:</strong> Ampa Skywalk Rooftop, Chennai</p>
+          <p>Unplugged melodies and soulful vibes under the stars.</p>
+          <p style="color: #39ff14; font-weight: bold; font-size: 1.1rem">
+            Registration Fee: ₹1800
+          </p>
+          <button class="register-btn" data-event="Acoustic Night">
+            Register Now
+          </button>
+        </div>
+        <div class="event">
+          <h3>Open Mic & Art Fest</h3>
+          <p><strong>Date:</strong> May 22, 2026</p>
+          <p><strong>Venue:</strong> Thiruvanmiyur Beach Lawn, Chennai</p>
+          <p>Platform for music, poetry, and art lovers to showcase talent.</p>
+          <p style="color: #39ff14; font-weight: bold; font-size: 1.1rem">
+            Registration Fee: ₹1800
+          </p>
+          <button class="register-btn" data-event="Open Mic & Art Fest">
+            Register Now
+          </button>
+        </div>
+        <div class="event">
+          <h3>Summer Music Fiesta</h3>
+          <p><strong>Date:</strong> June 18, 2026</p>
+          <p><strong>Venue:</strong> Phoenix Marketcity Event Arena, Chennai</p>
+          <p>Electrifying performances, DJ nights, and summer vibes.</p>
+          <p style="color: #39ff14; font-weight: bold; font-size: 1.1rem">
+            Registration Fee: ₹1800
+          </p>
+          <button class="register-btn" data-event="Summer Music Fiesta">
+            Register Now
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact Us</h2>
+      <p>
+        Email: <a href="mailto:sunilmc197@gmail.com">sunilmc197@gmail.com</a>
+      </p>
+      <p>
+        Instagram:
+        <a href="https://www.instagram.com/_stxr._.sunil_/" target="_blank"
+          >@_stxr._.sunil_</a
+        >
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        ©️ 2026 sky Events. Designed by SUNIL M C. &nbsp;|&nbsp; ✦ Powered by AI
+      </p>
+    </footer>
+
+    <!-- REGISTRATION MODAL -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Register for Event</h2>
+        <div
+          style="
+            background: #39ff14;
+            color: #000;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1rem;
+          "
+        >
+          Registration Fee: ₹1800
+        </div>
+        <form id="registrationForm">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required />
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required maxlength="10" />
+          <small id="phoneError" style="color: red; display: none"
+            >Please enter a valid 10-digit phone number.</small
+          >
+          <label for="event">Event</label>
+          <input type="text" id="eventInput" name="event" readonly value="" />
+          <label for="payment">Select Payment Method</label>
+          <select id="paymentMethod" required>
+            <option value="">--Select--</option>
+            <option value="Card">Card</option>
+            <option value="UPI">UPI</option>
+            <option value="QR">QR Payment</option>
+          </select>
+          <div id="cardFields" style="display: none">
+            <label for="cardNumber">Card Number</label>
+            <input
+              type="text"
+              id="cardNumber"
+              placeholder="XXXX XXXX XXXX XXXX"
+            />
+            <label for="expiry">Expiry Date</label>
+            <input type="text" id="expiry" placeholder="MM/YY" />
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" placeholder="XXX" />
+          </div>
+          <div id="upiField" style="display: none">
+            <label for="upiId">UPI ID</label>
+            <input type="text" id="upiId" placeholder="example@upi" />
+          </div>
+          <div id="qrField" style="display: none">
+            <label>Scan UPI QR Code to Pay</label>
+            <div
+              id="qrCodeContainer"
+              style="
+                text-align: center;
+                padding: 20px;
+                background: #f0f0f0;
+                border-radius: 8px;
+              "
+            >
+              <div
+                id="qrCanvas"
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              ></div>
+              <p style="margin-top: 10px; color: #666; font-size: 0.9rem">
+                UPI ID: <strong>9346462785@pthdfc</strong>
+              </p>
+            </div>
+          </div>
+          <button type="submit">Proceed Payment</button>
+        </form>
+        <p class="success-msg"></p>
+      </div>
+    </div>
+
+    <!-- AI TOOL LOADING OVERLAY -->
+    <div
+      id="ai-loading"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      "
+    >
+      <div
+        style="
+          width: 60px;
+          height: 60px;
+          border: 4px solid #333;
+          border-top: 4px solid #39ff14;
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite;
+        "
+      ></div>
+      <p
+        style="
+          color: #39ff14;
+          margin-top: 1rem;
+          font-size: 1.1rem;
+          font-weight: bold;
+        "
+        id="ai-loading-text"
+      >
+        AI is thinking...
+      </p>
+    </div>
+
+    <canvas id="confettiCanvas"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
