@@ -73,5 +73,5 @@ Output
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/sky-events-ai.git
+git clone https://github.com/sunilmc197/sky-events-ai.git
 ```
